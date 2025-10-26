@@ -1,0 +1,8 @@
+[
+  { "id": "oil_change", "label": "Oil Change" },
+  { "id": "tire_swap", "label": "Tire Swap" },
+  { "id": "chain_service", "label": "Chain Service" },
+  { "id": "brake_service", "label": "Brake Service" },
+  { "id": "coolant_flush", "label": "Coolant Flush" },
+  { "id": "valve_check", "label": "Valve Clearance Check" }
+]

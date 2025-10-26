@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RideWise Settings</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/page-service.css">
+  <script type="module" src="/js/pages/settings.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <img src="/assets/logos/ridewise-mark.svg" alt="" class="brand-mark" aria-hidden="true">
+      <span class="brand-title">RideWise</span>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/index.html">Dashboard</a></li>
+        <li><a href="/settings.html" aria-current="page">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="main-content" tabindex="-1">
+    <section class="settings" aria-labelledby="settings-heading">
+      <h1 id="settings-heading">Preferences</h1>
+      <form id="settings-form" novalidate>
+        <fieldset>
+          <legend>Units</legend>
+          <label for="distance-units">Distance</label>
+          <select id="distance-units" name="distance" data-field="distance">
+            <option value="miles">Miles</option>
+            <option value="kilometers">Kilometers</option>
+          </select>
+          <label for="temperature-units">Temperature</label>
+          <select id="temperature-units" name="temperature" data-field="temperature">
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="celsius">Celsius</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Theme</legend>
+          <label for="theme-select">Color theme</label>
+          <select id="theme-select" name="theme" data-field="theme">
+            <option value="auto">Auto</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Data</legend>
+          <div class="import-export">
+            <label for="import-file" class="btn-secondary">Import data</label>
+            <input type="file" id="import-file" accept="application/json" data-field="import" hidden>
+            <button type="button" class="btn-secondary" data-action="export">Export data</button>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Save settings</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; <span data-bind="year"></span> RideWise</p>
+  </footer>
+
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+</body>
+</html>

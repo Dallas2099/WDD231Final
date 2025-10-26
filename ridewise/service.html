@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RideWise Service Entry</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/page-service.css">
+  <script type="module" src="/js/pages/service.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <img src="/assets/logos/ridewise-mark.svg" alt="" class="brand-mark" aria-hidden="true">
+      <span class="brand-title">RideWise</span>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/index.html">Dashboard</a></li>
+        <li><a href="/settings.html">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="main-content" tabindex="-1">
+    <section class="form-section" aria-labelledby="service-form-heading">
+      <h1 id="service-form-heading">Service entry</h1>
+      <form id="service-form" novalidate>
+        <div id="form-errors" role="alert" aria-live="assertive" class="visually-hidden" tabindex="-1"></div>
+
+        <label for="bike">Bike</label>
+        <select id="bike" name="bike" required data-field="bike">
+          <option value="">Select a bike</option>
+        </select>
+
+        <label for="date">Date</label>
+        <input id="date" type="date" name="date" required data-field="date">
+
+        <fieldset>
+          <legend>Usage at service</legend>
+          <div class="fieldset-row">
+            <label for="odo">Odometer</label>
+            <input id="odo" name="odo" inputmode="numeric" data-field="odo">
+          </div>
+          <div class="fieldset-row">
+            <label for="hours">Hours</label>
+            <input id="hours" name="hours" inputmode="numeric" data-field="hours">
+          </div>
+        </fieldset>
+
+        <label for="type">Service Type</label>
+        <select id="type" name="type" required data-field="type"></select>
+
+        <label for="cost">Cost</label>
+        <input id="cost" name="cost" inputmode="decimal" pattern="^\\d+(?:\\.\\d{1,2})?$" data-field="cost">
+
+        <label for="vendor">Vendor</label>
+        <input id="vendor" name="vendor" data-field="vendor">
+
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" data-field="notes" rows="4"></textarea>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Save Entry</button>
+          <button type="button" class="btn-secondary" data-action="cancel">Cancel</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; <span data-bind="year"></span> RideWise</p>
+  </footer>
+
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+</body>
+</html>

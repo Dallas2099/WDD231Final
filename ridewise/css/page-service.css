@@ -1,0 +1,20 @@
+.form-section {
+  max-width: 640px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+#service-form {
+  background: var(--color-surface);
+}
+
+#service-form fieldset {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 38em) {
+  #service-form fieldset {
+    grid-template-columns: 1fr;
+  }
+}

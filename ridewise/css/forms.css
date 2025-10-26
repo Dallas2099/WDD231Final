@@ -1,0 +1,97 @@
+form {
+  display: grid;
+  gap: var(--space-sm);
+  background: var(--color-surface);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: var(--color-surface-alt);
+  transition: border var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+}
+
+fieldset {
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+  display: grid;
+  gap: var(--space-xs);
+}
+
+legend {
+  font-weight: 600;
+  padding: 0 var(--space-xs);
+}
+
+.fieldset-row {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: flex-end;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-link {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  color: #0f172a;
+  box-shadow: var(--shadow-sharp);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--color-text);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.btn-link {
+  padding: 0.25rem 0.75rem;
+  background: none;
+  color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary,
+  .btn-secondary,
+  .btn-link {
+    transition: none;
+  }
+}

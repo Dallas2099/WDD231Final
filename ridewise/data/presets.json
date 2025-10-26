@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "prefs": { "units": { "distance": "miles", "temperature": "fahrenheit" }, "currency": "USD", "theme": "auto" },
+  "bikes": [
+    { "id": "abc123", "year": 2005, "make": "BMW", "model": "R1200GS", "nickname": "GS", "odometer": 48210 }
+  ],
+  "services": [
+    { "id": "def456", "bikeId": "abc123", "date": "2025-10-01", "odo": 48000, "type": "oil_change", "vendor": "Self", "cost": 74.23, "notes": "" }
+  ]
+}

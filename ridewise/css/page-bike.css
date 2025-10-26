@@ -1,0 +1,35 @@
+.bike-header {
+  display: grid;
+  gap: var(--space-sm);
+  background: var(--color-surface);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+.bike-meta {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--color-muted);
+}
+
+.bike-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.service-history {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.table-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.actions-col {
+  width: 1%;
+}

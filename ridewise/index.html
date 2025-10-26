@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RideWise Dashboard</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/page-home.css">
+  <script type="module" src="/js/pages/index.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <img src="/assets/logos/ridewise-mark.svg" alt="RideWise" class="brand-mark" aria-hidden="true">
+      <span class="brand-title">RideWise</span>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/index.html" aria-current="page">Dashboard</a></li>
+        <li><a href="/settings.html">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="main-content" tabindex="-1">
+    <section class="hero" aria-labelledby="dashboard-heading">
+      <div>
+        <h1 id="dashboard-heading">Your garage at a glance</h1>
+        <p>Track service history, monitor upcoming maintenance, and keep every ride dialed in.</p>
+        <button type="button" class="btn btn-primary" data-action="add-bike">Add Bike</button>
+      </div>
+    </section>
+
+    <section class="stats" aria-labelledby="stats-heading">
+      <div class="section-heading">
+        <h2 id="stats-heading">Quick stats</h2>
+        <button type="button" class="btn-link" data-action="toggle-filters" aria-expanded="false" aria-controls="filter-panel">Filters</button>
+      </div>
+      <div id="filter-panel" class="filters" hidden>
+        <div class="filter-group">
+          <label for="filter-bike">Bike</label>
+          <select id="filter-bike" name="filter-bike" data-filter="bike"></select>
+        </div>
+        <div class="filter-group">
+          <label for="filter-type">Service Type</label>
+          <select id="filter-type" name="filter-type" data-filter="type"></select>
+        </div>
+        <div class="filter-group">
+          <label for="filter-range">Date range</label>
+          <input type="date" id="filter-range" name="filter-range" data-filter="range">
+        </div>
+      </div>
+      <div class="stat-grid" data-region="stats" role="list" aria-live="polite"></div>
+    </section>
+
+    <section class="bike-list" aria-labelledby="bikes-heading">
+      <div class="section-heading">
+        <h2 id="bikes-heading">Garage</h2>
+        <button type="button" class="btn-secondary" data-action="add-service">Log Service</button>
+      </div>
+      <div class="card-grid" data-region="bike-cards" role="list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; <span data-bind="year"></span> RideWise</p>
+  </footer>
+
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+</body>
+</html>

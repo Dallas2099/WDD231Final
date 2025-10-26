@@ -1,0 +1,43 @@
+.hero h1 {
+  margin-bottom: 0.35rem;
+}
+
+.hero p {
+  margin-bottom: var(--space-sm);
+  max-width: 40ch;
+}
+
+.stat-card {
+  background: rgba(56, 189, 248, 0.12);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+}
+
+.card-grid .card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-grid .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.card-grid .card:hover::after,
+.card-grid .card:focus-within::after {
+  opacity: 1;
+}
+
+@media (min-width: 62em) {
+  .main-content {
+    grid-template-columns: 2fr 3fr;
+  }
+
+  .stats {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RideWise Bike Details</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/page-bike.css">
+  <script type="module" src="/js/pages/bike.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <img src="/assets/logos/ridewise-mark.svg" alt="" class="brand-mark" aria-hidden="true">
+      <span class="brand-title">RideWise</span>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/index.html">Dashboard</a></li>
+        <li><a href="/settings.html">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="main-content" tabindex="-1">
+    <header class="bike-header" aria-live="polite">
+      <h1 data-bind="bike-title">Bike details</h1>
+      <div class="bike-meta">
+        <p><strong>Nickname:</strong> <span data-bind="bike-nickname"></span></p>
+        <p><strong>Odometer:</strong> <span data-bind="bike-odo"></span></p>
+        <p><strong>Last service:</strong> <span data-bind="bike-last-service"></span></p>
+      </div>
+      <div class="bike-actions">
+        <a class="btn-primary" data-link="add-service" href="/service.html">Log service</a>
+        <button type="button" class="btn-secondary" data-action="edit-bike">Edit bike</button>
+      </div>
+    </header>
+
+    <section class="service-history" aria-labelledby="service-history-heading">
+      <div class="section-heading">
+        <h2 id="service-history-heading">Service history</h2>
+        <div class="table-controls">
+          <label for="history-sort">Sort by</label>
+          <select id="history-sort" name="history-sort" data-sort>
+            <option value="date-desc">Newest first</option>
+            <option value="date-asc">Oldest first</option>
+            <option value="odo-desc">Odometer high to low</option>
+            <option value="odo-asc">Odometer low to high</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-responsive" role="region" aria-live="polite" aria-describedby="service-history-heading">
+        <table class="service-table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Usage</th>
+              <th scope="col">Service</th>
+              <th scope="col">Vendor</th>
+              <th scope="col">Cost</th>
+              <th scope="col" class="actions-col">Actions</th>
+            </tr>
+          </thead>
+          <tbody data-region="service-table-body">
+            <tr>
+              <td colspan="6" class="empty">No service entries yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; <span data-bind="year"></span> RideWise</p>
+  </footer>
+
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+</body>
+</html>
