@@ -1,130 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RideWise</title>
-  <link rel="stylesheet" href="./styles.css" />
-  <script type="module" src="./js/main.js" defer></script>
-</head>
-<body>
-  <header class="site-header">
-    <h1>RideWise</h1>
-    <nav class="site-nav" aria-label="Main">
-      <a href="#list">Entries</a>
-      <a href="#add">Add Service</a>
-      <button id="open-settings" class="icon-btn" aria-haspopup="dialog" aria-controls="settings-modal">⚙︎</button>
-    </nav>
-  </header>
-
-  <main id="app" class="container">
-    <section id="filters" class="card">
-      <h2 class="section-title">Filter</h2>
-      <div class="grid">
-        <label>
-          <span>Bike</span>
-          <select id="filter-bike"></select>
-        </label>
-        <label>
-          <span>Service Type</span>
-          <select id="filter-type">
-            <option value="">All</option>
-          </select>
-        </label>
-        <label>
-          <span>Search Notes/Vendor</span>
-          <input id="filter-q" type="search" placeholder="Search…" />
-        </label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RideWise | Motorcycle Maintenance Tracker</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+    <script type="module" src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <p class="eyebrow">WDD 231 · Team Project</p>
+        <h1>RideWise</h1>
+        <p class="tagline">
+          Track services, stay ahead of maintenance, and keep every bike road-ready.
+        </p>
       </div>
-    </section>
 
-    <section id="stats" class="card" aria-live="polite">
-      <h2 class="section-title">Quick Stats</h2>
-      <div id="stats-content" class="stats"></div>
-    </section>
+      <div class="active-bike-picker">
+        <label for="active-bike" class="sr-label">Active bike</label>
+        <select id="active-bike" aria-label="Select active bike"></select>
+      </div>
 
-    <section id="list" class="card">
-      <h2 class="section-title">Service Entries</h2>
-      <ul id="entries" class="entries" aria-label="Service entries list"></ul>
-    </section>
+      <button
+        id="filter-toggle"
+        class="panel-toggle"
+        type="button"
+        aria-controls="filter-panel"
+        aria-expanded="false"
+      >
+        Filters
+        <span aria-hidden="true">▾</span>
+      </button>
+    </header>
 
-    <section id="add" class="card">
-      <h2 class="section-title">Add / Edit Service Entry</h2>
-      <form id="service-form" novalidate>
-        <div class="grid">
-          <label>
-            <span>Bike</span>
-            <select id="bikeId" name="bikeId" required></select>
-            <small class="error" id="err-bikeId"></small>
-          </label>
-          <label>
-            <span>Date</span>
-            <input id="date" name="date" type="date" required />
-            <small class="error" id="err-date"></small>
-          </label>
-          <label>
-            <span>Odometer / Hours</span>
-            <input id="odometer" name="odometer" type="number" min="0" step="1" inputmode="numeric" required />
-            <small class="error" id="err-odometer"></small>
-          </label>
-          <label>
-            <span>Service Type</span>
-            <select id="serviceType" name="serviceType" required></select>
-            <small class="error" id="err-serviceType"></small>
-          </label>
-          <label>
-            <span>Cost</span>
-            <input id="cost" name="cost" type="number" min="0" step="0.01" />
-            <small class="error" id="err-cost"></small>
-          </label>
-          <label>
-            <span>Vendor</span>
-            <input id="vendor" name="vendor" type="text" maxlength="80" placeholder="Where you bought/serviced" />
-          </label>
+    <main class="layout">
+      <section
+        id="filter-panel"
+        class="filter-panel"
+        aria-live="polite"
+        data-collapsed="true"
+      >
+        <h2>Quick filters</h2>
+        <div class="filter-body">
+          <div class="filter-group">
+            <label for="filter-service">Service type</label>
+            <select id="filter-service">
+              <option value="">All services</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-search">Search notes/vendor</label>
+            <input
+              id="filter-search"
+              type="search"
+              placeholder="e.g. tires, Honda"
+              autocomplete="off"
+            />
+          </div>
         </div>
-        <label class="block">
-          <span>Notes</span>
-          <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="What was done, parts, torque, etc."></textarea>
-        </label>
-        <input type="hidden" id="entryId" name="entryId" />
-        <div class="actions">
-          <button type="submit" class="btn primary">Save Entry</button>
-          <button type="reset" class="btn">Reset</button>
+      </section>
+
+      <section id="stats" class="card stats-card" aria-live="polite">
+        <h2>Bike snapshot</h2>
+        <div id="stats-content" class="stats-grid"></div>
+      </section>
+
+      <section id="service-list" class="card entries-card">
+        <div class="card-header">
+          <div>
+            <h2>Service history</h2>
+            <p class="muted">Entries update when you change the active bike.</p>
+          </div>
+          <a class="ghost-link" href="#service-form">Jump to form</a>
         </div>
-      </form>
-    </section>
-  </main>
+        <ul id="entries" class="entries" aria-label="Service entries list"></ul>
+        <p id="empty-state" class="empty-state" hidden>
+          No service entries yet. Log your first maintenance action with the form
+          on the right.
+        </p>
+      </section>
 
-  <div id="toast" role="status" aria-live="polite" class="toast" hidden>Saved</div>
+      <section id="form-card" class="card form-card">
+        <h2>Add / Edit Service Entry</h2>
+        <form id="service-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="form-bike">Bike<span aria-hidden="true">*</span></label>
+              <select id="form-bike" name="bikeId" required></select>
+              <span class="error-msg" data-error-for="bikeId"></span>
+            </div>
 
-  <dialog id="settings-modal" aria-labelledby="settings-title">
-    <form id="settings-form" method="dialog">
-      <h2 id="settings-title">Settings</h2>
-      <label>
-        <span>Units</span>
-        <select id="units">
-          <option value="miles">Miles</option>
-          <option value="km">Kilometers</option>
-          <option value="hours">Hours</option>
-        </select>
-      </label>
-      <label>
-        <span>Theme</span>
-        <select id="theme">
-          <option value="system">System</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </label>
-      <menu>
-        <button value="cancel">Close</button>
-        <button id="save-settings" value="default">Save</button>
-      </menu>
-    </form>
-  </dialog>
+            <div class="field">
+              <label for="form-date">Date<span aria-hidden="true">*</span></label>
+              <input id="form-date" name="date" type="date" required />
+              <span class="error-msg" data-error-for="date"></span>
+            </div>
 
-  <footer class="site-footer">
-    <small>© <span id="year"></span> RideWise</small>
-  </footer>
-</body>
+            <div class="field">
+              <label for="form-odometer">
+                Odometer / Hours<span aria-hidden="true">*</span>
+              </label>
+              <input
+                id="form-odometer"
+                name="odometer"
+                type="number"
+                min="0"
+                step="1"
+                required
+                inputmode="numeric"
+              />
+              <span class="error-msg" data-error-for="odometer"></span>
+            </div>
+
+            <div class="field">
+              <label for="form-type">Service type<span aria-hidden="true">*</span></label>
+              <select id="form-type" name="serviceTypeId" required></select>
+              <span class="error-msg" data-error-for="serviceTypeId"></span>
+            </div>
+
+            <div class="field">
+              <label for="form-cost">Cost</label>
+              <input id="form-cost" name="cost" type="number" min="0" step="0.01" />
+              <span class="error-msg" data-error-for="cost"></span>
+            </div>
+
+            <div class="field">
+              <label for="form-vendor">Vendor</label>
+              <input
+                id="form-vendor"
+                name="vendor"
+                type="text"
+                maxlength="80"
+                placeholder="Dealer, shop, or DIY"
+              />
+            </div>
+
+            <div class="field field-wide">
+              <label for="form-notes">Notes</label>
+              <textarea
+                id="form-notes"
+                name="notes"
+                rows="4"
+                maxlength="500"
+                placeholder="Key parts, torque values, reminders"
+              ></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Save entry</button>
+            <button type="reset" class="btn ghost">Reset</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <div id="toast-container" role="status" aria-live="polite"></div>
+  </body>
 </html>

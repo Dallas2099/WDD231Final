@@ -1,0 +1,7 @@
+[
+  { "id": "oil_change", "label": "Oil Change" },
+  { "id": "tires", "label": "Tires" },
+  { "id": "brakes", "label": "Brakes" },
+  { "id": "chain", "label": "Chain & Sprockets" },
+  { "id": "coolant", "label": "Coolant" }
+]
