@@ -15,6 +15,7 @@ import {
 } from "./ui/renderForms.js";
 import { showToast } from "./ui/toasts.js";
 import { getParam, setParam } from "./urlParams.js";
+import { setupAddBikeModal } from "./ui/addBikeModal.js";
 
 const state = {
   activeBikeId: null,
@@ -38,6 +39,7 @@ async function init() {
     onFilterChange: handleFilterChange
   });
   setupServiceForm({ onSubmit: handleServiceSubmit });
+  setupAddBikeModal({ onBikeAdded: handleBikeAdded });
 
   renderServiceTypeFilter(state.serviceTypes);
   populateServiceTypes(state.serviceTypes);
@@ -76,6 +78,15 @@ async function handleServiceSubmit(formValues) {
   state.activeBikeId = formValues.bikeId;
   setParam("bikeId", state.activeBikeId, { replace: true });
   showToast("Service entry saved");
+  render();
+}
+
+function handleBikeAdded(bike) {
+  state.activeBikeId = bike.id;
+  setParam("bikeId", state.activeBikeId, { replace: true });
+  const bikes = getBikes();
+  updateBikeSelector(bikes, state.activeBikeId);
+  populateBikeOptions(bikes, state.activeBikeId);
   render();
 }
 

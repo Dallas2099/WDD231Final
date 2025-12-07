@@ -25,6 +25,10 @@ body {
   line-height: 1.5;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
 }
@@ -106,6 +110,17 @@ a {
 .panel-toggle:focus-visible {
   transform: translateY(-1px);
   background: rgba(255, 255, 255, 0.1);
+}
+
+.header-actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.header-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .layout {
@@ -335,12 +350,37 @@ a {
   box-shadow: 0 12px 24px rgba(31, 122, 236, 0.35);
 }
 
+.btn.secondary {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
 .btn.ghost {
   border: 1px solid var(--border);
   background: #fff;
 }
 
 .btn:hover {
+  transform: translateY(-2px);
+}
+
+.icon-button {
+  border: none;
+  background: rgba(15, 23, 42, 0.08);
+  color: inherit;
+  border-radius: 999px;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  background: rgba(15, 23, 42, 0.12);
   transform: translateY(-2px);
 }
 
@@ -382,6 +422,72 @@ a {
   }
 }
 
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal[data-open="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  color: #0f172a;
+  border-radius: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  width: min(640px, calc(100% - 2rem));
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35);
+  animation: modalIn 0.28s ease;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.modal-eyebrow {
+  color: #6b7280;
+  margin-bottom: 0.15rem;
+}
+
+.modal-form {
+  margin-top: 1rem;
+}
+
+.modal-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (min-width: 640px) {
   .layout {
     gap: 1.5rem;
@@ -397,6 +503,10 @@ a {
 
   .field-wide {
     grid-column: 1 / -1;
+  }
+
+  .modal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -431,5 +541,10 @@ a {
 
   .layout > * {
     height: fit-content;
+  }
+
+  .header-actions {
+    grid-template-columns: 1fr auto;
+    align-items: center;
   }
 }

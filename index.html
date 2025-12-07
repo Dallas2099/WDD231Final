@@ -17,21 +17,26 @@
         </p>
       </div>
 
-      <div class="active-bike-picker">
-        <label for="active-bike" class="sr-label">Active bike</label>
-        <select id="active-bike" aria-label="Select active bike"></select>
-      </div>
+      <div class="header-actions">
+        <div class="active-bike-picker">
+          <label for="active-bike" class="sr-label">Active bike</label>
+          <select id="active-bike" aria-label="Select active bike"></select>
+        </div>
 
-      <button
-        id="filter-toggle"
-        class="panel-toggle"
-        type="button"
-        aria-controls="filter-panel"
-        aria-expanded="false"
-      >
-        Filters
-        <span aria-hidden="true">▾</span>
-      </button>
+        <div class="header-buttons">
+          <button id="open-add-bike" class="btn secondary" type="button">Add bike</button>
+          <button
+            id="filter-toggle"
+            class="panel-toggle"
+            type="button"
+            aria-controls="filter-panel"
+            aria-expanded="false"
+          >
+            Filters
+            <span aria-hidden="true">▾</span>
+          </button>
+        </div>
+      </div>
     </header>
 
     <main class="layout">
@@ -154,6 +159,97 @@
         </form>
       </section>
     </main>
+
+    <div
+      id="add-bike-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="add-bike-title"
+      hidden
+    >
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-content" role="document" tabindex="-1">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow modal-eyebrow">Garage</p>
+            <h2 id="add-bike-title">Add a bike</h2>
+            <p class="muted">Save a new bike and set it active across the dashboard.</p>
+          </div>
+          <button
+            type="button"
+            class="icon-button"
+            aria-label="Close add bike dialog"
+            data-close-modal
+          >
+            &times;
+          </button>
+        </header>
+
+        <form id="add-bike-form" class="modal-form" novalidate>
+          <div class="modal-grid">
+            <div class="field">
+              <label for="add-bike-name">Bike name<span aria-hidden="true">*</span></label>
+              <input
+                id="add-bike-name"
+                name="name"
+                type="text"
+                maxlength="50"
+                autocomplete="off"
+                required
+                placeholder="e.g., Canyon Explorer"
+              />
+              <span class="error-msg" data-error-for="name"></span>
+            </div>
+
+            <div class="field">
+              <label for="add-bike-make">Make<span aria-hidden="true">*</span></label>
+              <input
+                id="add-bike-make"
+                name="make"
+                type="text"
+                maxlength="50"
+                required
+                placeholder="Honda"
+              />
+              <span class="error-msg" data-error-for="make"></span>
+            </div>
+
+            <div class="field">
+              <label for="add-bike-model">Model<span aria-hidden="true">*</span></label>
+              <input
+                id="add-bike-model"
+                name="model"
+                type="text"
+                maxlength="50"
+                required
+                placeholder="Africa Twin"
+              />
+              <span class="error-msg" data-error-for="model"></span>
+            </div>
+
+            <div class="field">
+              <label for="add-bike-year">Year<span aria-hidden="true">*</span></label>
+              <input
+                id="add-bike-year"
+                name="year"
+                type="number"
+                min="1970"
+                max="2099"
+                inputmode="numeric"
+                required
+              />
+              <span class="error-msg" data-error-for="year"></span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Save bike</button>
+            <button type="button" class="btn ghost" data-close-modal>Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <div id="toast-container" role="status" aria-live="polite"></div>
   </body>
