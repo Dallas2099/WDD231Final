@@ -62,6 +62,14 @@ a {
   color: #f8fafc;
 }
 
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .brand h1 {
   margin: 0;
   font-size: clamp(1.8rem, 5vw, 2.8rem);
@@ -79,6 +87,26 @@ a {
   margin: 0.5rem 0 0;
   color: #cdd5ea;
   max-width: 36ch;
+}
+
+.contact-link {
+  align-self: flex-start;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.55);
 }
 
 .active-bike-picker select {
@@ -473,6 +501,88 @@ a {
 }
 
 .modal-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-hero {
+  background: linear-gradient(135deg, #0f172a, #1f2937);
+  color: #f8fafc;
+}
+
+.contact-hero h2 {
+  margin-top: 0;
+}
+
+.contact-meta {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.contact-chip {
+  background: rgba(248, 250, 252, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.85rem;
+  padding: 0.9rem 1rem;
+}
+
+.chip-label {
+  display: block;
+  color: #cbd5f5;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.contact-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.contact-panel h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact-list li {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  background: #f9fbff;
+}
+
+.contact-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+.contact-note {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.contact-form {
   display: grid;
   gap: 1rem;
 }
